@@ -46,9 +46,14 @@ body {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
 .nav-links {
@@ -454,6 +459,10 @@ footer {
     .footer-grid {
         grid-template-columns: 1fr;
         text-align: center;
+    }
+
+    .logo-image {
+        height: 32px;
     }
 }
 
