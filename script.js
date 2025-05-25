@@ -298,4 +298,102 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Initialize Vanilla Tilt
+    VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+        max: 10,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.3,
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                if (entry.target.classList.contains('counter')) {
+                    animateCounter(entry.target);
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe elements
+    document.querySelectorAll('.fade-in-up, .timeline-item, .impact-card, .team-member, .value-card, .info-card, .counter').forEach(el => {
+        el.classList.add('animate-ready');
+        observer.observe(el);
+    });
+
+    // Counter animation
+    function animateCounter(counterElement) {
+        const target = parseInt(counterElement.getAttribute('data-target'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+
+        const updateCounter = () => {
+            current += step;
+            if (current < target) {
+                counterElement.textContent = Math.floor(current).toLocaleString();
+                requestAnimationFrame(updateCounter);
+            } else {
+                counterElement.textContent = target.toLocaleString();
+            }
+        };
+
+        updateCounter();
+    }
+
+    // Form animations
+    const formInputs = document.querySelectorAll('.floating-label input, .floating-label textarea');
+    formInputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            input.parentElement.classList.add('focused');
+        });
+
+        input.addEventListener('blur', () => {
+            if (!input.value) {
+                input.parentElement.classList.remove('focused');
+            }
+        });
+    });
+
+    // Particle animation
+    function createParticles() {
+        const particles = document.querySelector('.hero-particles');
+        if (!particles) return;
+
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDelay = `${Math.random() * 5}s`;
+            particles.appendChild(particle);
+        }
+    }
+
+    // Initialize particles on load
+    window.addEventListener('load', createParticles);
+
+    // Dark mode toggle
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    const body = document.body;
+
+    function updateTheme(e) {
+        if (e.matches) {
+            body.classList.add('dark-mode');
+        } else {
+            body.classList.remove('dark-mode');
+        }
+    }
+
+    prefersDarkScheme.addListener(updateTheme);
+    updateTheme(prefersDarkScheme);
 }); 

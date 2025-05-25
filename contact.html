@@ -12,11 +12,13 @@
 <body>
     <nav class="navbar">
         <div class="container">
-            <div class="logo">Invetified</div>
+            <div class="logo">
+                <img src="assets/logo.png" alt="Invetified Logo" class="logo-image">
+            </div>
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About</a>
-                <a href="contact.html" class="active">Contact</a>
+                <a href="contact.html" class="active">Contact Us</a>
             </div>
             <button class="mobile-menu" aria-label="Menu">
                 <span></span>
@@ -27,51 +29,164 @@
     </nav>
 
     <main>
-        <section class="contact-hero">
+        <section class="contact-hero parallax-section">
+            <div class="hero-particles"></div>
             <div class="container">
-                <h1>Get in Touch</h1>
-                <p class="section-subtitle">We'd love to hear from you</p>
+                <h1 class="glitch-text" data-text="Let's Connect">Let's Connect</h1>
+                <p class="hero-subtitle typing-text">We're here to help you succeed</p>
+                <div class="hero-content">
+                    <p class="fade-in-up">Have questions about Invetified? Our team is ready to assist you in transforming your inventory management.</p>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="mouse">
+                        <div class="wheel"></div>
+                    </div>
+                    <p>Scroll to Connect</p>
+                </div>
             </div>
         </section>
 
         <section class="contact-content">
             <div class="container">
                 <div class="contact-grid">
-                    <div class="contact-form">
-                        <h2>Send us a Message</h2>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="name" required>
+                    <div class="contact-form-wrapper glass-morphism" data-tilt>
+                        <div class="form-header">
+                            <h2 class="gradient-text">Get in Touch</h2>
+                            <p>Fill out the form below and we'll get back to you within 24 hours</p>
+                        </div>
+                        <form id="contactForm" class="animated-form">
+                            <div class="form-group floating-label">
+                                <input type="text" id="name" name="name" placeholder=" " required>
+                                <label for="name">Full Name</label>
+                                <div class="form-indicator"></div>
+                            </div>
+                            <div class="form-group floating-label">
+                                <input type="email" id="email" name="email" placeholder=" " required>
+                                <label for="email">Email Address</label>
+                                <div class="form-indicator"></div>
+                            </div>
+                            <div class="form-group floating-label">
+                                <input type="text" id="company" name="company" placeholder=" ">
+                                <label for="company">Company Name</label>
+                                <div class="form-indicator"></div>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
+                                <select id="subject" name="subject" required class="custom-select">
+                                    <option value="" disabled selected>Select a subject</option>
+                                    <option value="demo">Request Demo</option>
+                                    <option value="pricing">Pricing Inquiry</option>
+                                    <option value="support">Technical Support</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <label for="subject">Subject</label>
-                                <input type="text" id="subject" name="subject" required>
+                            <div class="form-group floating-label">
+                                <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+                                <label for="message">How can we help you?</label>
+                                <div class="form-indicator"></div>
                             </div>
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" rows="5" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Send Message</button>
+                            <button type="submit" class="btn btn-primary glow-effect">
+                                Send Message
+                                <div class="btn-particles"></div>
+                            </button>
                         </form>
                     </div>
                     <div class="contact-info">
-                        <h2>Other Ways to Connect</h2>
-                        <div class="info-card">
-                            <h3>Email</h3>
-                            <p>info@invetified.com</p>
+                        <div class="info-header">
+                            <h2 class="gradient-text">Connect With Us</h2>
+                            <p>Choose your preferred way to reach us</p>
                         </div>
-                        <div class="info-card">
-                            <h3>Phone</h3>
-                            <p>+1 (555) 123-4567</p>
+                        <div class="info-cards">
+                            <div class="info-card glass-effect" data-tilt>
+                                <div class="info-icon pulse">📧</div>
+                                <h3 class="gradient-text">Email Us</h3>
+                                <p class="highlight">info@invetified.com</p>
+                                <p class="response-time">Response time: 24 hours</p>
+                            </div>
+                            <div class="info-card glass-effect" data-tilt>
+                                <div class="info-icon pulse">📞</div>
+                                <h3 class="gradient-text">Call Us</h3>
+                                <p class="highlight">+1 (555) 123-4567</p>
+                                <p class="response-time">Mon-Fri, 9AM-5PM EST</p>
+                            </div>
+                            <div class="info-card glass-effect" data-tilt>
+                                <div class="info-icon pulse">💬</div>
+                                <h3 class="gradient-text">Live Chat</h3>
+                                <p class="highlight">Available 24/7</p>
+                                <p class="response-time">Response time: 5 minutes</p>
+                            </div>
                         </div>
-                        <div class="info-card">
-                            <h3>Office Hours</h3>
-                            <p>Monday - Friday<br>9:00 AM - 5:00 PM EST</p>
+                        <div class="social-connect">
+                            <h3 class="gradient-text">Follow Our Journey</h3>
+                            <div class="social-grid">
+                                <a href="#" class="social-card glass-effect" data-tilt>
+                                    <div class="social-icon">LinkedIn</div>
+                                    <div class="social-hover"></div>
+                                </a>
+                                <a href="#" class="social-card glass-effect" data-tilt>
+                                    <div class="social-icon">Twitter</div>
+                                    <div class="social-hover"></div>
+                                </a>
+                                <a href="#" class="social-card glass-effect" data-tilt>
+                                    <div class="social-icon">Instagram</div>
+                                    <div class="social-hover"></div>
+                                </a>
+                                <a href="#" class="social-card glass-effect" data-tilt>
+                                    <div class="social-icon">YouTube</div>
+                                    <div class="social-hover"></div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <div class="container">
+                <div class="map-wrapper glass-morphism" data-tilt>
+                    <h2 class="gradient-text">Visit Our Office</h2>
+                    <div class="office-details">
+                        <div class="office-info">
+                            <div class="info-icon">📍</div>
+                            <div class="info-text">
+                                <h3 class="gradient-text">Headquarters</h3>
+                                <p>123 Innovation Drive</p>
+                                <p>Tech Valley, CA 94025</p>
+                            </div>
+                        </div>
+                        <div class="map-container">
+                            <div class="map-placeholder">
+                                <div class="map-marker pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content glass-morphism">
+                    <div class="cta-text">
+                        <h2 class="gradient-text">Ready to Transform Your Business?</h2>
+                        <p>Join thousands of businesses that trust Invetified for their inventory management</p>
+                    </div>
+                    <div class="cta-actions">
+                        <a href="#" class="btn btn-primary glow-effect">Start Free Trial</a>
+                        <a href="#" class="btn btn-secondary">Schedule Demo</a>
+                    </div>
+                    <div class="trial-features">
+                        <div class="trial-feature">
+                            <i class="feature-icon">✨</i>
+                            <span>14-Day Free Trial</span>
+                        </div>
+                        <div class="trial-feature">
+                            <i class="feature-icon">🔒</i>
+                            <span>No Credit Card Required</span>
+                        </div>
+                        <div class="trial-feature">
+                            <i class="feature-icon">🚀</i>
+                            <span>Instant Setup</span>
                         </div>
                     </div>
                 </div>
@@ -79,12 +194,38 @@
         </section>
     </main>
 
-    <footer>
+    <footer class="animated-footer">
+        <div class="footer-waves">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+        </div>
         <div class="container">
-            <p>&copy; 2024 Invetified. All rights reserved.</p>
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Invetified</h4>
+                    <p>AI-powered inventory management for the modern business.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="#" class="hover-effect">Features</a>
+                    <a href="#" class="hover-effect">Pricing</a>
+                    <a href="#" class="hover-effect">About</a>
+                    <a href="#" class="hover-effect">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>Email: info@invetified.com</p>
+                    <p>Phone: (+91) TO-BE-ADDED</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Invetified. All rights reserved.</p>
+            </div>
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 
