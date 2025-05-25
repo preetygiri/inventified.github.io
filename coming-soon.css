@@ -1,0 +1,66 @@
+.coming-soon-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.coming-soon-content {
+    text-align: center;
+    color: white;
+    padding: 2rem;
+    max-width: 600px;
+    animation: fadeIn 1s ease-in;
+}
+
+.coming-soon-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.coming-soon-content p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.coming-soon-logo {
+    width: 200px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+    .coming-soon-content h1 {
+        font-size: 2rem;
+    }
+
+    .coming-soon-content p {
+        font-size: 1.1rem;
+    }
+
+    .coming-soon-logo {
+        width: 150px;
+    }
+} 
