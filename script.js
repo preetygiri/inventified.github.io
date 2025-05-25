@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Intersection Observer for fade-in animations
+    // Intersection Observer for all animations
     const observerOptions = {
         root: null,
         rootMargin: '0px',
@@ -56,13 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('animate-in');
+                if (entry.target.classList.contains('counter')) {
+                    animateCounter(entry.target);
+                }
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe elements for animation
-    document.querySelectorAll('.feature-card, .metric-card, .pricing-card, .trial-feature').forEach(el => {
+    // Observe all elements that need animations
+    document.querySelectorAll('.feature-card, .metric-card, .pricing-card, .trial-feature, .fade-in-up, .timeline-item, .impact-card, .team-member, .value-card, .counter').forEach(el => {
         el.classList.add('animate-ready');
         observer.observe(el);
     });
@@ -193,68 +196,120 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Features Carousel
-    const featureSlides = document.querySelectorAll('.feature-slide');
-    const navDots = document.querySelectorAll('.nav-dot');
-    let currentSlide = 0;
-    let isAnimating = false;
-    let slideInterval;
+    function initFeaturesCarousel() {
+        const carousel = document.querySelector('.features-carousel');
+        const slides = document.querySelectorAll('.feature-slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        let currentSlide = 0;
+        let interval;
 
-    function showSlide(index) {
-        if (isAnimating) return;
-        isAnimating = true;
+        function showSlide(index) {
+            // Hide all slides first
+            slides.forEach(slide => {
+                slide.style.display = 'none';
+                slide.classList.remove('active');
+            });
 
-        // Remove active class from current slide and dot
-        featureSlides[currentSlide].classList.remove('active');
-        navDots[currentSlide].classList.remove('active');
+            // Remove active class from all dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+                dot.setAttribute('aria-selected', 'false');
+            });
 
-        // Update current slide index
-        currentSlide = index;
-
-        // Add active class to new slide and dot
-        featureSlides[currentSlide].classList.add('active');
-        navDots[currentSlide].classList.add('active');
-
-        // Reset animation flag after transition
-        setTimeout(() => {
-            isAnimating = false;
-        }, 500);
-    }
-
-    function startAutoSlide() {
-        slideInterval = setInterval(() => {
-            const nextSlide = (currentSlide + 1) % featureSlides.length;
-            showSlide(nextSlide);
-        }, 5000); // Change slide every 5 seconds
-    }
-
-    function stopAutoSlide() {
-        if (slideInterval) {
-            clearInterval(slideInterval);
+            // Show current slide and activate dot
+            slides[index].style.display = 'grid';
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            dots[index].setAttribute('aria-selected', 'true');
         }
-    }
 
-    // Add click handlers to navigation dots
-    navDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            if (currentSlide !== index) {
-                stopAutoSlide(); // Stop auto-sliding when user interacts
-                showSlide(index);
-                startAutoSlide(); // Restart auto-sliding
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function startAutoSlide() {
+            if (interval) {
+                clearInterval(interval);
+            }
+            interval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        // Add click events to dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+                startAutoSlide(); // Reset the timer when manually changing slides
+            });
+        });
+
+        // Initialize first slide and start auto-rotation
+        showSlide(0);
+        startAutoSlide();
+
+        // Pause on hover
+        carousel.addEventListener('mouseenter', () => {
+            if (interval) {
+                clearInterval(interval);
             }
         });
-    });
 
-    // Start auto-sliding when the page loads
-    startAutoSlide();
+        carousel.addEventListener('mouseleave', startAutoSlide);
 
-    // Pause auto-sliding when user hovers over the carousel
-    const featuresCarousel = document.querySelector('.features-carousel');
-    if (featuresCarousel) {
-        featuresCarousel.addEventListener('mouseenter', stopAutoSlide);
-        featuresCarousel.addEventListener('mouseleave', startAutoSlide);
+        // Touch events for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            if (interval) {
+                clearInterval(interval);
+            }
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoSlide();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchEndX - touchStartX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe right - previous slide
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                } else {
+                    // Swipe left - next slide
+                    currentSlide = (currentSlide + 1) % slides.length;
+                }
+                showSlide(currentSlide);
+            }
+        }
+
+        // Keyboard navigation
+        carousel.setAttribute('tabindex', '0');
+        carousel.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+                startAutoSlide();
+            } else if (e.key === 'ArrowRight') {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+                startAutoSlide();
+            }
+        });
     }
 
+    // Initialize the carousel
+    initFeaturesCarousel();
+
     // Add hover effect to feature visuals
+    const featureSlides = document.querySelectorAll('.feature-slide');
     featureSlides.forEach(slide => {
         const visual = slide.querySelector('.feature-visual');
         if (visual) {
@@ -312,30 +367,6 @@ document.addEventListener('DOMContentLoaded', () => {
         speed: 400,
         glare: true,
         "max-glare": 0.3,
-    });
-
-    // Intersection Observer for animations
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-in');
-                if (entry.target.classList.contains('counter')) {
-                    animateCounter(entry.target);
-                }
-            }
-        });
-    }, observerOptions);
-
-    // Observe elements
-    document.querySelectorAll('.fade-in-up, .timeline-item, .impact-card, .team-member, .value-card, .info-card, .counter').forEach(el => {
-        el.classList.add('animate-ready');
-        observer.observe(el);
     });
 
     // Counter animation

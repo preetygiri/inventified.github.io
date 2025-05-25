@@ -18,7 +18,6 @@
             <div class="nav-links">
                 <a href="index.html" class="active">Home</a>
                 <a href="about.html">About</a>
-                <a href="contact.html">Contact Us</a>
             </div>
             <button class="mobile-menu" aria-label="Menu">
                 <span></span>
@@ -280,11 +279,11 @@
                     </div>
                 </div>
 
-                <div class="features-navigation">
-                    <button class="nav-dot active" data-feature="ai-predictions"></button>
-                    <button class="nav-dot" data-feature="real-time"></button>
-                    <button class="nav-dot" data-feature="automation"></button>
-                    <button class="nav-dot" data-feature="mobile"></button>
+                <div class="features-navigation" role="tablist" aria-label="Features navigation">
+                    <button class="nav-dot active" role="tab" aria-selected="true" aria-label="AI Predictions" aria-controls="feature-ai-predictions" data-feature="ai-predictions"></button>
+                    <button class="nav-dot" role="tab" aria-selected="false" aria-label="Real-time Tracking" aria-controls="feature-real-time" data-feature="real-time"></button>
+                    <button class="nav-dot" role="tab" aria-selected="false" aria-label="Automation" aria-controls="feature-automation" data-feature="automation"></button>
+                    <button class="nav-dot" role="tab" aria-selected="false" aria-label="Mobile Access" aria-controls="feature-mobile" data-feature="mobile"></button>
                 </div>
             </div>
         </section>
@@ -402,7 +401,6 @@
                     <a href="#">Features</a>
                     <a href="#">Pricing</a>
                     <a href="#">About</a>
-                    <a href="#">Contact</a>
                 </div>
                 <div class="footer-section">
                     <h4>Contact</h4>
