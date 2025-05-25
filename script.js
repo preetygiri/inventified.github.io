@@ -197,6 +197,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navDots = document.querySelectorAll('.nav-dot');
     let currentSlide = 0;
     let isAnimating = false;
+    let slideInterval;
 
     function showSlide(index) {
         if (isAnimating) return;
@@ -219,32 +220,38 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     }
 
+    function startAutoSlide() {
+        slideInterval = setInterval(() => {
+            const nextSlide = (currentSlide + 1) % featureSlides.length;
+            showSlide(nextSlide);
+        }, 5000); // Change slide every 5 seconds
+    }
+
+    function stopAutoSlide() {
+        if (slideInterval) {
+            clearInterval(slideInterval);
+        }
+    }
+
     // Add click handlers to navigation dots
     navDots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             if (currentSlide !== index) {
+                stopAutoSlide(); // Stop auto-sliding when user interacts
                 showSlide(index);
+                startAutoSlide(); // Restart auto-sliding
             }
         });
     });
 
-    // Auto-advance slides
-    let slideInterval = setInterval(() => {
-        showSlide((currentSlide + 1) % featureSlides.length);
-    }, 5000);
+    // Start auto-sliding when the page loads
+    startAutoSlide();
 
-    // Pause auto-advance on hover
+    // Pause auto-sliding when user hovers over the carousel
     const featuresCarousel = document.querySelector('.features-carousel');
     if (featuresCarousel) {
-        featuresCarousel.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
-        });
-
-        featuresCarousel.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(() => {
-                showSlide((currentSlide + 1) % featureSlides.length);
-            }, 5000);
-        });
+        featuresCarousel.addEventListener('mouseenter', stopAutoSlide);
+        featuresCarousel.addEventListener('mouseleave', startAutoSlide);
     }
 
     // Add hover effect to feature visuals
