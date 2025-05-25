@@ -19,10 +19,18 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
 }
 
 .container {
@@ -128,7 +136,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(138, 43, 226, 0.9) 0%, rgba(153, 50, 204, 0.85) 100%);
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.92) 0%, rgba(153, 50, 204, 0.88) 100%);
     opacity: 0.85;
     z-index: 1;
 }
@@ -136,22 +144,27 @@ body {
 .hero .container {
     position: relative;
     z-index: 2;
-    max-width: 900px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     line-height: 1.1;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: -0.03em;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.75rem;
+    color: rgba(255, 255, 255, 0.95);
     margin-bottom: 2rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
 }
 
 .hero-content {
@@ -161,8 +174,10 @@ body {
 
 .hero-content p {
     font-size: 1.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     color: rgba(255, 255, 255, 0.9);
+    line-height: 1.7;
+    font-weight: 400;
 }
 
 .cta-buttons {
@@ -346,19 +361,18 @@ body {
     background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(153, 50, 204, 0.1));
     border-radius: 20px;
     color: var(--primary-color);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 500;
     margin-bottom: 0.8rem;
+    letter-spacing: 0.02em;
 }
 
 .feature-content h3 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
     color: var(--text-color);
-    background: linear-gradient(135deg, var(--text-color), var(--primary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -0.5px;
-    line-height: 1.2;
 }
 
 .feature-description {
@@ -369,6 +383,7 @@ body {
     color: var(--light-text);
     line-height: 1.7;
     font-size: 1.05rem;
+    font-weight: 400;
 }
 
 .feature-benefits {
@@ -421,9 +436,10 @@ body {
 }
 
 .benefit-text {
+    font-size: 0.95rem;
     font-weight: 500;
+    letter-spacing: -0.01em;
     color: var(--text-color);
-    line-height: 1.3;
 }
 
 .feature-stats {
@@ -452,18 +468,21 @@ body {
 
 .stat-number {
     display: block;
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.5rem;
+    font-weight: 600;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 0.2rem;
+    letter-spacing: -0.01em;
 }
 
 .stat-label {
     font-size: 0.85rem;
     color: var(--light-text);
     font-weight: 500;
+    letter-spacing: 0.01em;
+    text-transform: none;
 }
 
 .feature-visual {
@@ -597,6 +616,32 @@ body {
 
     .stat-label {
         font-size: 0.8rem;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .feature-content h3 {
+        font-size: 1.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
     }
 }
 
