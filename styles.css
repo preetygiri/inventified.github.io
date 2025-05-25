@@ -258,12 +258,69 @@ body {
 .pricing {
     padding: 6rem 0;
     background: var(--background);
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 400px;
+    background: var(--accent-gradient);
+    opacity: 0.05;
+    transform: skewY(-5deg);
+    transform-origin: top left;
+}
+
+.pricing-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    position: relative;
 }
 
 .pricing h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.pricing-subtitle {
+    font-size: 1.25rem;
+    color: var(--light-text);
+    margin-bottom: 2rem;
+}
+
+.pricing-header-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.decoration-line {
+    height: 2px;
+    width: 60px;
+    background: var(--accent-gradient);
+    border-radius: 2px;
+}
+
+.decoration-icon {
+    font-size: 1.5rem;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    transform: rotate(-10deg);
 }
 
 .pricing-grid {
@@ -272,6 +329,7 @@ body {
     gap: 2rem;
     max-width: 1100px;
     margin: 0 auto;
+    position: relative;
 }
 
 .pricing-card {
@@ -463,6 +521,18 @@ footer {
 
     .logo-image {
         height: 32px;
+    }
+
+    .pricing h2 {
+        font-size: 2.5rem;
+    }
+
+    .pricing-subtitle {
+        font-size: 1.125rem;
+    }
+
+    .decoration-line {
+        width: 40px;
     }
 }
 
